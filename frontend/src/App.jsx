@@ -698,9 +698,20 @@ const mainGridHours = forecastData.filter(
 
             <div>
               <span className="eyebrow">ENGINE STATUS</span>
-              <strong>UI PREVIEW</strong>
+              <strong>
+  {apiStatus === 'Connected'
+    ? 'MODEL CONNECTED'
+    : apiStatus === 'Disconnected'
+      ? 'OFFLINE'
+      : 'CONNECTING'}
+</strong>
               <span className="status-subtitle">
-                API connection pending
+                {apiError ||
+  (apiStatus === 'Connected'
+    ? 'Forecast API connected'
+    : apiStatus === 'Disconnected'
+      ? 'Check Flask backend'
+      : 'Connecting to Flask API...')}
               </span>
             </div>
           </div>
@@ -767,7 +778,7 @@ const mainGridHours = forecastData.filter(
 
             <div className="metric-bottom">
               <span className="metric-symbol amber-symbol">ϟ</span>
-              <span>Based on preview rules</span>
+              <span>Based on configured grid rules</span>
             </div>
           </article>
 
@@ -872,9 +883,9 @@ const mainGridHours = forecastData.filter(
           </div>
 
           <p>
-            Forecast decisions are generated using the configured
-            grid rules. Preview values are illustrative.
-          </p>
+  Demand forecasts use the trained ML model and supplied sample data.
+  Grid decisions follow configured operating rules.
+</p>
 
           <span className="footer-version">BUILD 0.1.0</span>
         </footer>
