@@ -1,0 +1,11 @@
+timestamp,predicted_demand_kw,grid_mode,critical_alert,alert_message,explanation
+2015-06-16 15:00:00,225.92,Renewable Storage Mode,True,Critical Overload Alert,"Predicted demand is 225.92 kW, which meets or exceeds the 200 kW critical threshold."
+2015-06-16 16:00:00,224.4,Renewable Storage Mode,True,Critical Overload Alert,"Predicted demand is 224.40 kW, which meets or exceeds the 200 kW critical threshold."
+2015-06-16 17:00:00,226.5,Renewable Storage Mode,True,Critical Overload Alert,"Predicted demand is 226.50 kW, which meets or exceeds the 200 kW critical threshold."
+2015-06-16 18:00:00,261.73,Renewable Storage Mode,True,Critical Overload Alert,"Predicted demand is 261.73 kW, which meets or exceeds the 200 kW critical threshold."
+2015-06-16 19:00:00,263.09,Renewable Storage Mode,True,Critical Overload Alert,"Predicted demand is 263.09 kW, which meets or exceeds the 200 kW critical threshold."
+2015-06-16 20:00:00,249.33,Renewable Storage Mode,True,Critical Overload Alert,"Predicted demand is 249.33 kW, which meets or exceeds the 200 kW critical threshold."
+2015-06-16 21:00:00,241.1,Renewable Storage Mode,True,Critical Overload Alert,"Predicted demand is 241.10 kW, which meets or exceeds the 200 kW critical threshold."
+2015-06-16 22:00:00,226.81,Renewable Storage Mode,True,Critical Overload Alert,"Predicted demand is 226.81 kW, which meets or exceeds the 200 kW critical threshold."
+2015-06-16 23:00:00,143.93,Main Grid Mode,False,,"Predicted demand is 143.93 kW, at or below 160 kW and outside the evening window."
+2015-06-17 00:00:00,97.02,Main Grid Mode,False,,"Predicted demand is 97.02 kW, at or below 160 kW and outside the evening window."
