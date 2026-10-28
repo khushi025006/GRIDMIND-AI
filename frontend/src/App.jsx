@@ -1474,85 +1474,149 @@ function App() {
           )}
         </div>
       ) : activePage === 'Alerts' ? (
-        <div className="alerts-module">
-          {loading ? (
-            <p>Loading forecast alerts...</p>
-          ) : apiError ? (
-            <p role="alert">{apiError}</p>
-          ) : forecastData.filter(
-              (item) => item.critical_alert,
-            ).length === 0 ? (
-            <section className="panel">
-              <span className="eyebrow">SYSTEM STATUS</span>
+  <div className="alerts-module">
+    {loading ? (
+      <p>Loading forecast risk assessments...</p>
+    ) : apiError ? (
+      <p role="alert">{apiError}</p>
+    ) : forecastData.length === 0 ? (
+      <section className="panel">
+        <span className="eyebrow">GRID RISK ADVISOR</span>
+        <h3>No forecast available</h3>
+        <p>
+          Upload environmental data to generate risk
+          assessments and recommended actions.
+        </p>
+      </section>
+    ) : (
+      <>
+        <section className="panel">
+          <span className="eyebrow">
+            AI GRID RISK EARLY-WARNING SYSTEM
+          </span>
 
-              <h3>No critical alerts</h3>
+          <h3>Forecast Risk Overview</h3>
 
-              <p>
-                No forecast hours currently meet the critical
-                demand threshold.
-              </p>
-            </section>
-          ) : (
-            <section className="panel">
-              <span className="eyebrow">
-                CRITICAL OVERLOAD EVENTS
-              </span>
+          <p>
+            Review predicted demand risks, alert priorities,
+            and recommended actions for the forecast period.
+          </p>
 
-              <p>
+          <div className="metrics-grid">
+            <div className="metric-card">
+              <span className="eyebrow">HIGH RISK</span>
+              <h3>
                 {
                   forecastData.filter(
-                    (item) => item.critical_alert,
+                    (item) => item.risk_level === 'High',
                   ).length
-                }{' '}
-                critical forecast hour(s) detected.
-              </p>
+                }
+              </h3>
+              <p>Urgent review recommended</p>
+            </div>
 
-              <div className="forecast-table-wrap">
-                <table className="forecast-table">
-                  <thead>
-                    <tr>
-                      <th>Timestamp</th>
-                      <th>Demand (kW)</th>
-                      <th>Grid Mode</th>
-                      <th>Alert</th>
-                      <th>Explanation</th>
-                    </tr>
-                  </thead>
+            <div className="metric-card">
+              <span className="eyebrow">MEDIUM RISK</span>
+              <h3>
+                {
+                  forecastData.filter(
+                    (item) => item.risk_level === 'Medium',
+                  ).length
+                }
+              </h3>
+              <p>Elevated monitoring</p>
+            </div>
 
-                  <tbody>
-                    {forecastData
-                      .filter((item) => item.critical_alert)
-                      .map((item, index) => (
-                        <tr
-                          key={`${item.timestamp}-${index}`}
-                        >
-                          <td>{item.timestamp}</td>
+            <div className="metric-card">
+              <span className="eyebrow">LOW RISK</span>
+              <h3>
+                {
+                  forecastData.filter(
+                    (item) => item.risk_level === 'Low',
+                  ).length
+                }
+              </h3>
+              <p>Routine monitoring</p>
+            </div>
+          </div>
+        </section>
 
-                          <td>
-                            {Number(
-                              item.predicted_demand_kw,
-                            ).toFixed(2)}
-                          </td>
+        <section className="panel">
+          <span className="eyebrow">
+            FORECAST ASSESSMENTS
+          </span>
 
-                          <td>{item.grid_mode}</td>
+          <h3>Risk Details and Recommended Actions</h3>
 
-                          <td>
-                            {item.alert_message ||
-                              'Critical overload'}
-                          </td>
+          <div className="forecast-table-wrap">
+            <table className="forecast-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Demand (kW)</th>
+                  <th>Risk Level</th>
+                  <th>Priority</th>
+                  <th>Grid Mode</th>
+                  <th>Risk Reason</th>
+                  <th>Recommended Action</th>
+                </tr>
+              </thead>
 
-                          <td>
-                            {item.explanation ||
-                              'Critical demand threshold reached.'}
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </div>
-            </section>
-          )}
-        </div>
+              <tbody>
+                {forecastData.map((item, index) => (
+                  <tr
+                    key={`${item.timestamp}-${index}`}
+                  >
+                    <td>{item.timestamp}</td>
+
+                    <td>
+                      {Number(
+                        item.predicted_demand_kw,
+                      ).toFixed(2)}
+                    </td>
+
+                    <td>
+                      <span
+                        className={`risk-badge risk-${(
+                          item.risk_level || 'Low'
+                        ).toLowerCase()}`}
+                      >
+                        {item.risk_level || 'Not assessed'}
+                      </span>
+                    </td>
+
+                    <td>
+                      {item.priority || 'Not available'}
+                    </td>
+
+                    <td>{item.grid_mode}</td>
+
+                    <td>
+                      {item.risk_reason ||
+                        item.explanation ||
+                        'No risk explanation available.'}
+                    </td>
+
+                    <td>
+                      {item.recommended_action ||
+                        'Continue monitoring the forecast.'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="forecast-data-note">
+            Risk levels are generated using configured project
+            thresholds and predicted demand. Predictions are
+            estimates, not live grid measurements or certified
+            operational safety assessments.
+          </p>
+        </section>
+      </>
+    )}
+  </div>
       ) : activePage === 'Upload' ? (
         <div className="upload-module">
           <form onSubmit={handleForecastUpload}>

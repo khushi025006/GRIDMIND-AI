@@ -1675,9 +1675,72 @@ a {
     justify-content: flex-start;
   }
 }
+/* Risk summary cards */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 24px 0;
+}
 
+.metrics-grid .metric-card {
+  min-width: 0;
+}
 
+/* Risk level badges */
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.risk-high {
+  color: #a61b1b;
+  background: #fde8e7;
+  border: 1px solid #f5b7b1;
+}
+.risk-medium {
+  color: #895400;
+  background: #fff1cf;
+  border: 1px solid #f0d58a;
+}
 
+.risk-low {
+  color: #216749;
+  background: #e2f4e9;
+  border: 1px solid #b7e2c7;
+}
 
+/* Risk assessment table */
+.alerts-module .forecast-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 18px;
+}
+
+.alerts-module .forecast-table {
+  min-width: 1100px;
+}
+
+.alerts-module .forecast-table th,
+.alerts-module .forecast-table td {
+  vertical-align: top;
+}
+
+.alerts-module .forecast-table td {
+  line-height: 1.6;
+}
+
+/* Small screens */
+@media (max-width: 760px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
 
 
