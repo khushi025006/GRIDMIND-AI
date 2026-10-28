@@ -1,5 +1,7 @@
 {
-  "dependencies": {
-    "recharts": "^3.10.1"
+  "name": "gridmind-ai",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix frontend run build"
   }
 }
