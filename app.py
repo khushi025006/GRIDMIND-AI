@@ -8,6 +8,7 @@ from flask import Flask, jsonify, request
 from werkzeug.utils import secure_filename
 
 from grid_controller import evaluate_grid_state
+from grid_advisor import generate_grid_advice
 
 
 # --------------------------------------------------
@@ -281,13 +282,20 @@ def forecast():
         predictions,
     ):
         demand_kw = float(prediction)
-
         decision = evaluate_grid_state(
             demand_kw=demand_kw,
             timestamp=timestamp.to_pydatetime(),
         )
+        advice = generate_grid_advice(
+            demand_kw=demand_kw,
+            grid_mode=decision["grid_mode"],
+            critical_alert=decision["critical_alert"],
+            timestamp=timestamp.strftime("%Y-%m-%d %H:%M:%S"),
+        )
 
         alert_message = decision["alert_message"]
+
+
 
         results.append({
             "timestamp": timestamp.strftime("%Y-%m-%d %H:%M:%S"),
@@ -300,6 +308,10 @@ def forecast():
                 else None
             ),
             "explanation": decision["explanation"],
+            "risk_level": advice["risk_level"],
+            "risk_reason": advice["risk_reason"],
+            "recommended_action": advice["recommended_action"],
+            "priority": advice["priority"],
         })
 
     # 11. Build summary information.
