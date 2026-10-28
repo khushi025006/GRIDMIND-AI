@@ -14,7 +14,7 @@ import {
 const DEMAND_LIMIT = 160
 const CRITICAL_LIMIT = 200
 
-const API_BASE_URL = 'http://127.0.0.1:5000'
+const API_BASE_URL = 'https://gridmind-ai-backend-7tzf.onrender.com'
 
 const formatHour = (hour) =>
   `${String(hour).padStart(2, '0')}:00`
