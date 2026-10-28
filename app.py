@@ -35,6 +35,7 @@ CORS(
         "http://127.0.0.1:5173",
         "http://localhost:5174",
         "http://127.0.0.1:5174",
+        "https://gridmind-ai-emxyggnw.onslate.in",
     ],
 )
 
@@ -355,9 +356,12 @@ def file_too_large(_error):
 # --------------------------------------------------
 
 if __name__ == "__main__":
+    import os
+
     app.run(
-        host="127.0.0.1",
-        port=5000,
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000)),
         debug=False,
     )
+
 
