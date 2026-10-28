@@ -2,6 +2,6 @@
   "name": "gridmind-ai",
   "private": true,
   "scripts": {
-    "build": "npm --prefix frontend run build"
+    "build": "npm --prefix frontend install && npm --prefix frontend run build"
   }
 }
