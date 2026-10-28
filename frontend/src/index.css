@@ -109,3 +109,70 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+/* Forecast and alert results */
+.forecast-toolbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 16px;
+flex-wrap: wrap;
+margin-bottom: 20px;
+}
+
+.forecast-download-button {
+border: 1px solid #b79cff;
+border-radius: 10px;
+padding: 11px 16px;
+background: #2b2238;
+color: #f5efff;
+font: inherit;
+cursor: pointer;
+transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.forecast-download-button:hover {
+background: #403153;
+transform: translateY(-1px);
+}
+
+.forecast-table-wrap {
+width: 100%;
+overflow-x: auto;
+border: 1px solid rgba(183, 156, 255, 0.18);
+border-radius: 12px;
+}
+
+.forecast-table {
+width: 100%;
+border-collapse: collapse;
+text-align: left;
+font-size: 13px;
+}
+
+.forecast-table th,
+.forecast-table td {
+padding: 13px 15px;
+border-bottom: 1px solid rgba(183, 156, 255, 0.12);
+white-space: nowrap;
+}
+
+.forecast-table th {
+color: #b79cff;
+background: #211a2a;
+font-weight: 600;
+}
+
+.forecast-table td {
+color: #f0eaf5;
+}
+
+.forecast-table tbody tr:hover {
+background: rgba(183, 156, 255, 0.06);
+}
+
+.forecast-data-note {
+margin-top: 18px;
+font-size: 12px;
+opacity: 0.75;
+}
+

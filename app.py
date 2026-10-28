@@ -27,13 +27,17 @@ REQUIRED_COLUMNS = [
 FORECAST_HOURS = 24
 MAX_UPLOAD_SIZE = 10 * 1024 * 1024  # 10 MB
 app = Flask(__name__)
+
 CORS(
     app,
     origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "http://localhost:5174",
+        "http://127.0.0.1:5174",
     ],
 )
+
 app.config["MAX_CONTENT_LENGTH"] = MAX_UPLOAD_SIZE
 
 
